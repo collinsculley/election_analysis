@@ -47,7 +47,17 @@ with open(file_to_load) as election_data:
 
         # Add vote to specific candidate total count
         candidate_votes[candidate_name] += 1
-    
+
+with open(file_to_save, "w") as txt_file:
+    election_results = (
+        f"\nElection Results\n"
+        f"--------------------\n"
+        f"Total Votes: {total_votes:,}\n"
+        f"--------------------\n")
+    print(election_results, end="")
+    # Save final vote ct to txt file
+    txt_file.write(election_results)
+
     # loop to iterate through candidate list to determine vote %
     for candidate in candidate_votes:
         
@@ -55,19 +65,20 @@ with open(file_to_load) as election_data:
         votes = candidate_votes[candidate]
         # calculate
         vote_percentage = float(votes) / float(total_votes) * 100
-        # print candidate name & %
-        #print(f"{candidate}: received {vote_percentage:.1f}% of the vote")
+        # print candidate name, %, count
+        #print(f"{candidate}: {vote_percentage:.1f}% ({votes:,})\n")
 
-        #determine winning vote ct and name
+        # determine winning vote ct and name
         if (votes > winning_count) and (vote_percentage > winning_percentage):
             # if true, set winning_ct = votes AND winning_% = vote_%
             winning_count = votes
             winning_percentage = vote_percentage
             winning_candidate = candidate
 
-        # print winning results
-        print(f"{candidate}: {vote_percentage:.1f}% ({votes:,})\n")
-    
+        candidate_results = (f"{candidate}: {vote_percentage:.1f}% ({votes:,})\n")
+        print(candidate_results)
+        txt_file.write(candidate_results)
+
     winning_candidate_summary = (
         f"--------------------\n"
         f"Winner: {winning_candidate}\n"
@@ -75,7 +86,4 @@ with open(file_to_load) as election_data:
         f"Winning Percentage: {winning_percentage:.1f}%\n"
         f"--------------------\n")
     print(winning_candidate_summary)
-
-
-# print/audits
-#print(candidate_votes)
+    txt_file.write(winning_candidate_summary)
