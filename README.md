@@ -20,5 +20,13 @@ Total Votes:  369,711
 - Percentage of Total Vote: 73.8%
 
 ## Challenge Overview
+Additional review of turnout by county was requested.  Counts and split percentages were calculated to give insight into largest contributor.
 
-## Challenge Summary
+## Challenge Results
+### County Turnout
+- Jefferson: 10.5% (38,855)
+- Denver: 82.8% (306,055)
+- Arapahoe: 6.7% (24,801)
+
+### Largest County
+- Denver
